@@ -231,8 +231,8 @@ didReceiveAppEvent:(NSString *)name
 willChangeAdSizeTo:(GADAdSize)size {
      if (self.onSizeChange) {
         self.onSizeChange(@{
-            @"width": [NSNumber numberWithFloat: size.width],
-            @"height": [NSNumber numberWithFloat: size.height]
+            @"width": [NSNumber numberWithFloat: size.size.width],
+            @"height": [NSNumber numberWithFloat: size.size.height]
         });
     }
     if (self.onWillChangeAdSizeTo) {
