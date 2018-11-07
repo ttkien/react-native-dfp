@@ -131,7 +131,7 @@
           _bannerView.validAdSizes = validAdSizes;
         }
 
-        GADRequest *request = [GADRequest request];
+        DFPRequest *request = [DFPRequest request];
         if(_testDeviceID) {
             if([_testDeviceID isEqualToString:@"EMULATOR"]) {
                 request.testDevices = @[kGADSimulatorID];
@@ -229,6 +229,12 @@ didReceiveAppEvent:(NSString *)name
 /// Called before the ad view changes to the new size.
 - (void)adView:(DFPBannerView *)bannerView
 willChangeAdSizeTo:(GADAdSize)size {
+     if (self.onSizeChange) {
+        self.onSizeChange(@{
+            @"width": [NSNumber numberWithFloat: size.width],
+            @"height": [NSNumber numberWithFloat: size.height]
+        });
+    }
     if (self.onWillChangeAdSizeTo) {
         // bannerView calls this method on its adSizeDelegate object before the banner updates it size,
         // allowing the application to adjust any views that may be affected by the new ad size.
