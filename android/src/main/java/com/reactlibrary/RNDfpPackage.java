@@ -21,7 +21,6 @@ public class RNDfpPackage implements ReactPackage {
       );
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
