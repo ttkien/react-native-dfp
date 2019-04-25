@@ -34,9 +34,11 @@ public class RNDfpBannerViewManager extends SimpleViewManager<ReactViewGroup> im
   public static final String PROP_BANNER_SIZE = "bannerSize";
   public static final String PROP_AD_UNIT_ID = "adUnitID";
   public static final String PROP_TEST_DEVICE_ID = "testDeviceID";
+  public static final String PROP_IS_TAG_FOR_CHILD_DIRECTED_TREATMENT= "isTagForChildDirectedTreatment";
 
   private String testDeviceID = null;
   private String adUnitID = null;
+  private Boolean isTagForChildDirectedTreatment = null;
 
   public enum Events {
     EVENT_SIZE_CHANGE("onSizeChange"),
@@ -267,6 +269,12 @@ public class RNDfpBannerViewManager extends SimpleViewManager<ReactViewGroup> im
     this.testDeviceID = testDeviceID;
   }
 
+
+  @ReactProp(name = PROP_IS_TAG_FOR_CHILD_DIRECTED_TREATMENT)
+  public void setPropIsTagForChildDirectedTreatment(final ReactViewGroup view, final Boolean isTagForChildDirectedTreatment) {
+    this.isTagForChildDirectedTreatment = isTagForChildDirectedTreatment;
+  }
+
   private void loadAd(final PublisherAdView adView) {
     if (adView.getAdSizes() != null && adUnitID != null) {
 
@@ -275,6 +283,11 @@ public class RNDfpBannerViewManager extends SimpleViewManager<ReactViewGroup> im
       }
 
       PublisherAdRequest.Builder adRequestBuilder = new PublisherAdRequest.Builder();
+
+      if (isTagForChildDirectedTreatment != null) {
+        adRequestBuilder = adRequestBuilder.tagForChildDirectedTreatment(isTagForChildDirectedTreatment);
+
+      }
       if (testDeviceID != null){
         if (testDeviceID.equals("EMULATOR")) {
           adRequestBuilder = adRequestBuilder.addTestDevice(PublisherAdRequest.DEVICE_ID_EMULATOR);

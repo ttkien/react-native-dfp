@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *bannerSize;
 @property (nonatomic, copy) NSString *adUnitID;
 @property (nonatomic, copy) NSString *testDeviceID;
+@property (nonatomic, assign) BOOL isTagForChildDirectedTreatment;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onWillChangeAdSizeTo;
 

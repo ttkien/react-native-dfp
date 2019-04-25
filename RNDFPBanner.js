@@ -38,7 +38,7 @@ export default class DFPBanner extends React.Component {
   }
 
   render() {
-    const { adUnitID, testDeviceID, dimensions, style } = this.props;
+    const { adUnitID, testDeviceID, dimensions, style, isTagForChildDirectedTreatment } = this.props;
     let { bannerSize, adSizes } = this.props;
 
     // Dimensions gets highest priority
@@ -73,7 +73,8 @@ export default class DFPBanner extends React.Component {
           dimensions={dimensions}
           testDeviceID={testDeviceID}
           adUnitID={adUnitID}
-          bannerSize={bannerSize} />
+          bannerSize={bannerSize}
+          isTagForChildDirectedTreatment={isTagForChildDirectedTreatment} />
       </View>
     );
   }
@@ -133,4 +134,5 @@ DFPBanner.propTypes = {
   adViewWillLeaveApplication: PropTypes.func,
   admobDispatchAppEvent: PropTypes.func,
   // ...View.propTypes,
+  isTagForChildDirectedTreatment: PropTypes.bool,
 };

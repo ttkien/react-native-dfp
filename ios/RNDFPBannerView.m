@@ -132,6 +132,8 @@
         }
 
         DFPRequest *request = [DFPRequest request];
+        [request tagForChildDirectedTreatment:self.isTagForChildDirectedTreatment];
+
         if(_testDeviceID) {
             if([_testDeviceID isEqualToString:@"EMULATOR"]) {
                 request.testDevices = @[kGADSimulatorID];
